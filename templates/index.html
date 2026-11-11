@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>チームの連絡板</h1>
+<p class="lead">チームへの連絡を書き込もう</p>
+<p class="banner">このページは {{ views }} 回表示されました（数えているのは cache の Redis）</p>
+<form method="post" action="/">
+  <input type="text" name="text" maxlength="140" placeholder="連絡（140字まで）" required>
+  <button type="submit">書き込む</button>
+</form>
+<ul>
+{% for n in notices %}
+  <li>{{ n.text }}<span class="time">{{ n.created_at.astimezone(jst).strftime("%m/%d %H:%M") }}</span></li>
+{% else %}
+  <li>まだ連絡はありません</li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>管理画面</h1>
+{% if ok %}
+<p class="banner">連絡は {{ count }} 件、ページは {{ views }} 回表示されました</p>
+{% else %}
+<p class="banner error">トークンが違います（.env の ADMIN_TOKEN と同じ値を渡してください）</p>
+{% endif %}
+{% endblock %}
